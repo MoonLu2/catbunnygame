@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bogyoh7xngnpr"]
+
+[ext_resource type="Texture2D" uid="uid://cp5kvunacej5w" path="res://Cat-Bunny1.png" id="1_fj7yv"]
+[ext_resource type="Script" uid="uid://bivna3r0bv82w" path="res://world.gd" id="1_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://d2xn0j8fim0f" path="res://Cat-Bunny2.png" id="2_tlwt5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqk2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fj7yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tlwt5")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 2.5
+}]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_tlwt5")
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+position = Vector2(32.5, 29.5)
+scale = Vector2(1.28125, 1.28125)
+sprite_frames = SubResource("SpriteFrames_aqk2v")
+animation = &"walking"
+frame_progress = 0.175208
