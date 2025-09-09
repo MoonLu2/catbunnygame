@@ -22,7 +22,7 @@ animations = [{
 script = ExtResource("1_tlwt5")
 
 [node name="Character" type="AnimatedSprite2D" parent="."]
-position = Vector2(32.5, 29.5)
+position = Vector2(146, 106)
 scale = Vector2(1.28125, 1.28125)
 sprite_frames = SubResource("SpriteFrames_aqk2v")
 animation = &"walking"
