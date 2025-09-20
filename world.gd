@@ -34,38 +34,50 @@ func _init():
 	#print("draw() " + str(i))
 
 func _input(event: InputEvent):
-	var left = event.is_action_pressed("ui_left")
-	var right = event.is_action_pressed("ui_right")
-	var up = event.is_action_pressed("ui_up")
-	var down = event.is_action_pressed("ui_down")
+	var left_pressed = event.is_action_pressed("ui_left")
+	var right_pressed = event.is_action_pressed("ui_right")
+	var up_pressed = event.is_action_pressed("ui_up")
+	var down_pressed = event.is_action_pressed("ui_down")
+	
+	var left_released = event.is_action_released("ui_left")
+	var right_released = event.is_action_released("ui_right")
+	var up_released = event.is_action_released("ui_up")
+	var down_released = event.is_action_released("ui_down")
+	
 	var c = $Character
 	
-					# Walking Start
-	if left:
-		vx = -2
+					# Walking Start and Stop 
+	
+	if right_pressed or left_pressed or up_pressed or down_pressed:
 		c.play()
+	
+	if left_pressed:
+		vx -= 2
+	if left_released:
+		vx += 2
 		
-	if right:
-		vx = 2
-		c.play()
+	if right_pressed:
+		vx += 2
+	if right_released:
+		vx -= 2
 	
-	if up:
-		vy = 2
-		c.play()
+	if up_pressed:
+		vy += 2
+	if up_released:
+		vy -= 2
 	
-	if down:
-		vy = -2
-		c.play()
+	if down_pressed:
+		vy -= 2
+	if down_released:
+		vy += 2
 
-					# Walking stop
+					#
 	
 	if event.is_action_released("ui_left") \
 	   or event.is_action_released("ui_right"):
-		vx = 0
 		c.stop()
 
 
 	if event.is_action_released("ui_up") \
 	   or event.is_action_released("ui_down"):
-		vy = 0
 		c.stop()
