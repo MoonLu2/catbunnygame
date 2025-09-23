@@ -10,13 +10,14 @@ func _process(delta: float):
 	# Identifying $Character as "c" for less typing
 	var c = $Character
 	
-	# Printing CatBunny's Current position for testing purposes (it's not meant to be visible in the game)
-	print("Character.x " + str(c.position.x))
-	print("Character.y " + str(c.position.y))
+	# Printing CatBunny's Current position and other thinngs for testing purposes (it's not meant to be visible in the game)
+	print("vx = " + str(vx) + ", vy = " + str(vy))
+	#print("Character.x " + str(c.position.x))
+	#print("Character.y " + str(c.position.y))
 	c.position.x += vx
 	c.position.y -= vy
 	
-	# Defending the borders so the CaBunny won't go off screen.
+	# Defending the borders so the CatBunny won't go off screen.
 	if c.position.x >= 315:
 		c.position.x -= 320
 	if c.position.x <= -16:
@@ -45,12 +46,8 @@ func _input(event: InputEvent):
 	var down_released = event.is_action_released("ui_down")
 	
 	var c = $Character
-	
-					# Walking Start and Stop 
-	
-	if right_pressed or left_pressed or up_pressed or down_pressed:
-		c.play()
-	
+
+	# Starting actually walking (moving the character if the arrows pressed and making the speed 0, when released)
 	if left_pressed:
 		vx -= 2
 	if left_released:
@@ -71,13 +68,9 @@ func _input(event: InputEvent):
 	if down_released:
 		vy += 2
 
-					#
-	
-	if event.is_action_released("ui_left") \
-	   or event.is_action_released("ui_right"):
-		c.stop()
 
-
-	if event.is_action_released("ui_up") \
-	   or event.is_action_released("ui_down"):
+	# Verifying that the speed isn't 0, to continue or else stop the animation.
+	if vx != 0 or vy != 0:
+		c.play()
+	else:
 		c.stop()
