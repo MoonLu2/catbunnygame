@@ -50,27 +50,37 @@ func _input(event: InputEvent):
 	# Starting actually walking (moving the character if the arrows pressed and making the speed 0, when released)
 	if left_pressed:
 		vx -= 2
+	
 	if left_released:
 		vx += 2
 		
 	if right_pressed:
 		vx += 2
+		
 	if right_released:
 		vx -= 2
 	
 	if up_pressed:
 		vy += 2
+	
 	if up_released:
 		vy -= 2
 	
 	if down_pressed:
 		vy -= 2
+		
 	if down_released:
 		vy += 2
-
 
 	# Verifying that the speed isn't 0, to continue or else stop the animation.
 	if vx != 0 or vy != 0:
 		c.play()
 	else:
 		c.stop()
+
+# Incomplete Comment
+	if vx < 0:
+		c.flip_h = true
+	if vx > 0:
+		c.flip_h = false
+		
